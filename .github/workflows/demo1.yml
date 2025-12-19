@@ -1,5 +1,15 @@
 name: Events Demo 1
-on: ...
+on: 
+  pull_request:
+    types: [opened, edited,reopened] # trigger on PR open/edit/reopen
+    branches: [main, master, feat/**,dev**-*] 
+  workflow_dispatch: # trigger manually  
+  push: 
+    branches: [main, master, feat/**,dev**-*]  # trigger on push to specified branches main, master feat/new, dev-new
+    paths-ignore:
+      - 'docs/**'  # ignore changes in docs folder
+      - '.github/workflows/*'  # ignore changes in workflow files
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
